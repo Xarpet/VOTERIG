@@ -1,22 +1,22 @@
 function test() {
 	const canvas = document.getElementById("game-canvas");
-	const ctx = canvas.getContext("2d");
-	addRandomPoints(5, ctx);
+	addRandomPoints(100, canvas);
 }
 
-function addRandomPoints(numPoints, ctx) {
+function addRandomPoints(numPoints, canvas) {
+	const ctx = canvas.getContext("2d");
 	let drawn = 0;
 	while (drawn < numPoints) {
-		const [x, y] = randomPoint();
+		const [x, y] = randomPoint(canvas.width, canvas.height);
 		ctx.beginPath();
-		ctx.arc(1000, 600, 2, 0, Math.PI * 2);
+		ctx.arc(x, y, 2, 0, Math.PI * 2);
 		ctx.fill();
 		drawn++;
 	}
 }
 
-function randomPoint() {
-	return [(Math.random()) * 1000, (Math.random()) * 600];
+function randomPoint(w, h) {
+	return [(Math.random()) * w, (Math.random()) * h];
 }
 
 window.addEventListener("load", test);
