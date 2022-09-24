@@ -1,6 +1,6 @@
 function test() {
 	const canvas = document.getElementById("game-canvas");
-	addRandomPoints(100, canvas);
+	addRandomPoints(5000, canvas);
 }
 
 function addRandomPoints(numPoints, canvas) {
@@ -9,7 +9,7 @@ function addRandomPoints(numPoints, canvas) {
 	while (drawn < numPoints) {
 		const [x, y] = randomPoint(canvas.width, canvas.height);
 		ctx.beginPath();
-		ctx.arc(x, y, 2, 0, Math.PI * 2);
+		ctx.arc(x, y, 3, 0, Math.PI * 2);
 		ctx.fill();
 		drawn++;
 	}
