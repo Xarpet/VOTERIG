@@ -1,0 +1,15 @@
+.tracker {
+  width: 12em;
+  height: 4em;
+  font-size: 200%;
+  color: #a4c9d7;
+}
+.tracker > span {
+  
+}
+#stars-tracker {
+  text-align: end;
+}
+#time-tracker {
+  text-align: start;
+}

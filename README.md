@@ -6,9 +6,6 @@ Interactive educational website about fair elections.
 # Participants:
 Wisha Wanichwecharungruang
 
-change star diff
-
-
 Disha Baldawa
 
 Aditi Buch

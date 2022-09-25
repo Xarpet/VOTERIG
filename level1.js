@@ -28,13 +28,16 @@ function playLevel1() {
   startLevel(distributions, ({ votes, stationXs, stationYs }) => {
     console.log("iojafiwoejf");
     let percentage = votes['purple'] / (votes['green'] + votes['purple'] + votes['orange']);
-    if (percentage > 0.85) {
+    if (percentage > 0.65) {
+      currentScore += 3;
       return [true, "⭐⭐⭐", percentage, "Master Manipulator!"];
     }
-    else if (percentage > 0.7) {
+    else if (percentage > 0.6) {
+      currentScore += 2;
       return [true, "⭐⭐", percentage, "Morally Compromised"];
     }
     else if (percentage >= 0.50) {
+      currentScore += 1;
       return [true, "⭐", percentage, "Slim Victory!"];
     }
     else {

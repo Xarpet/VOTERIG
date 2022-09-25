@@ -18,12 +18,15 @@ function playLevel0() {
   ], ({votes, stationXs, stationYs}) => {
     let percentage = votes['purple'] / (votes['green'] + votes['purple']);
     if (percentage > 0.85) {
+      currentScore += 3;
       return [true, "⭐⭐⭐", percentage, "Master Manipulator!"];
     }
     else if (percentage > 0.7) {
+      currentScore += 2;
       return [true, "⭐⭐", percentage, "Cheat Harder! You can make 85%!"];
     }
     else if (percentage >= 0.50) {
+      currentScore += 1;
       return [true, "⭐", percentage, "Cheat Harder!"];
     }
     else {

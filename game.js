@@ -17,7 +17,7 @@ const PARTIES = {
 };
 let wintext1 = "Good job! Purple won with "
 let wintext2 = "% of the vote! \n"
-
+let currentScore = 0;
 let currentLevel = 0;
 
 function startLevel(distributions, check) {
@@ -59,7 +59,8 @@ function startLevel(distributions, check) {
       const { votes, stationIndices } = computeVoteResults({ xs: origXs, ys: origYs, parties, stationXs, stationYs });
       
       clearInterval(wobbleInterval);
-      
+
+      stopTimer();
       const [won, text, percentage, name] = check({
         votes,
         stationXs,
@@ -109,6 +110,7 @@ function startLevel(distributions, check) {
           setTimeout(() => {
             velocities.fill(WOBBLE_VELOCITY);
             wobbleInterval = setInterval(wobbleFn, 200);
+            startTimer();
           }, 500);
         }, 500);
       }
@@ -139,10 +141,13 @@ function playLevel(levelNumber) {
     }
   }
   loadingIndicator.style.display = "flex";
+  updateStarsLabel();
+  stopTimer();
   setTimeout(() => {
     playLevelInner(levelNumber);
     setTimeout(() => {
-      loadingIndicator.style.display = "none";  
+      loadingIndicator.style.display = "none";
+      startTimer();
     }, 100);
   }, 100);
   
@@ -255,8 +260,8 @@ function shuffleArray(array) {
 
 function createBallot(ballotId, ballotElems) {
   const elem = ballotTemplate.content.cloneNode(true).querySelector(".ballot");
-  elem.style.top = `${190 * (ballotId - 1)}px`;
-  elem.style.right = "10px";
+  elem.style.left = `${200 * (ballotId - 1) + 10}px`;
+  elem.style.bottom = "10px";
   elem.ondragstart = (ev) => {
     dragStart(ballotId, ev);
   };
@@ -344,5 +349,6 @@ window.addEventListener("load", () => {
   canvasOverlay.ondragover = (ev) => ev.preventDefault();
   loadingIndicator = document.getElementById("loading-indicator");
   document.getElementById("next-level-button").onclick = closePopup;
+  currentScore = 0;
   playLevel(0);
 });

@@ -21,13 +21,16 @@ function playLevel3() {
       }
     }
     let percentage = votes['purple'] / (votes['green'] + votes['purple']);
-    if (percentage > 0.85) {
+    if (percentage > 0.60) {
+      currentScore += 3;
       return [true, "⭐⭐⭐", percentage, "Master Manipulator!"];
     }
-    else if (percentage > 0.7) {
+    else if (percentage > 0.55) {
+      currentScore += 2;
       return [true, "⭐⭐", percentage, "Morally Compromised"];
     }
     else if (percentage >= 0.50) {
+      currentScore += 1;
       return [true, "⭐", percentage, "Slim Victory!"];
     }
     else {

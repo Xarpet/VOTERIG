@@ -13,18 +13,37 @@
   <script src="level3.js"></script>
   <script src="level4.js"></script>
   <script src="level5.js"></script>
+  <script src="tracker.js"></script>
+  <script src="end.js"></script>
   <link href="game.css" rel="stylesheet" />
   <link href="loader.css" rel="stylesheet" />
+  <link href="tracker.css" rel="stylesheet" />
 </head>
 
 <body>
   <header>
+    <div id="time-tracker" class="tracker">
+      ⏳: <span id="time-label">0:00</span>
+    </div>
     <h1>
       <button id="header-button"     
-      onClick="window.location.reload();"> VOTERIG!</button>
+      onClick="window.location.reload();">VOTERIG!</button>
     </h1>
+    <div id="stars-tracker" class="tracker">
+      ⭐: <span id="stars-label">0</span>
+    </div>
   </header>
-  <div class="horizontal-container">
+    <div id="end-message">
+      <h2>
+        The End
+      </h2>
+      <h3 id="scoring">
+      </h3>
+       <p id="end-text">
+      Throughout your experience as a VOTERIGging county commissioner, you used smart placement of polling locations to guarantee your party a victory in the local election. While the game is a simplification, and the purple, green, and orange parties have nothing but a coincidental resemblance to real-life political parties, tactics like the ones you made use of are used time and time again by actual politicians to impact election results through manipulating voter turnout. As you grow and take part in the historic "great experiment" that is American democracy, keep in mind all the subtle ways in which the powers that be make it hard for us to exercise our most important civic duty. And if you get the chance, become part of the solution!
+        </p>
+    </div>
+  <div class="horizontal-container" id="mainframe">
     <aside>
       <div class="instructions">
         <h3 class="yellowish-title">
