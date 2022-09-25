@@ -1,7 +1,7 @@
 [Play the Game](https://xarpet.github.io/VOTERIG/)
 
 # VOTERIG
-Interactive educational website about fair elections.
+VOTERIG is an interactive game designed to raise awareness among young citizens about subtle methods of voter suppression and underscore the importance of voting in local elections.
 
 # Participants:
 Wisha Wanichwecharungruang

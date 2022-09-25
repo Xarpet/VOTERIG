@@ -46,6 +46,8 @@ h3 {
 }
 .instructions{
   background-color: #f0e7e3;
+  color: black;
+  font-size: 25px;
   height: fit-content;
   border: 2px solid black;
   padding: 30px;
@@ -54,13 +56,15 @@ h3 {
 .facts{
   text-align: center;
   background-color: #f0e7e3;
+  color: black;
+  font-size: 25px;
   height: fit-content;
   border: 2px solid black;
   padding: 30px;
 }
 
 .yellowish-title {
-  color: #967E76
+  color: #967E76;
   font-size: 40px;
 }
 
