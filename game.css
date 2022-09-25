@@ -123,6 +123,7 @@ aside {
   overflow: auto;
 }
 #submit-btn {
+  animation: wiggle 2s;
   background-color: #b6cdc8; /* Green */
   margin: 30px;
   border: none;

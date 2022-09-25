@@ -7,7 +7,7 @@ function playLevel3() {
     partyFunc: () => Math.random() > 0.9 ? 'green' : 'purple'
   }));
   distributions.push(genRandomPoints({
-    densityFunc: cluster(0.5, 0.5, 1.25, 13.0),
+    densityFunc: cluster(0.5, 0.5, 1.75, 13.0),
     partyFunc: () => Math.random() > 0.1 ? 'green' : 'purple'
   }));
   startLevel(distributions, ({votes, stationXs, stationYs}) => {
