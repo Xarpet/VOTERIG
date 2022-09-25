@@ -27,6 +27,6 @@ function playEnd(){
       title = "...but was it worth it?"
       break;
   }
-  const t = (timeTaken + Date.now() - lastTimeSnap) / 1000;
-  document.getElementById("scoring").innerText = `You earned a total of ${currentScore} stars\nYour title: ${title}\n Total Time ${t}`
+  const t = (timeTaken) / 1000;
+  document.getElementById("scoring").innerText = `You earned a total of ${currentScore} stars\nYour title: ${title}\n Total Time ${t} seconds`
 }

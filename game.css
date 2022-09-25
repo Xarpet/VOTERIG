@@ -6,6 +6,7 @@ body {
 }
 button {
   font-family: 'Rajdhani', cursive;
+  cursor: pointer;
 }
 
 header {
