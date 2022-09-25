@@ -14,22 +14,22 @@
   <script src="level4.js"></script>
   <script src="level5.js"></script>
   <link href="game.css" rel="stylesheet" />
+  <link href="loader.css" rel="stylesheet" />
 </head>
 
 <body>
   <header>
     <h1>
-      <font color="white">
-      VOTERIG!
-      </font>
+      <button id="header-button"     
+      onClick="window.location.reload();"> VOTERIG!</button>
     </h1>
   </header>
   <div class="horizontal-container">
     <aside>
       <div class="instructions">
-        <h1 class="yellowish-title">
+        <h3 class="yellowish-title">
           Welcome to VOTERIG!
-        </h1>
+        </h3>
         <p id="left-text">
           Hello, VOTERIGger! You are the county commissioner of a town of 2000 people, where half the population votes Purple and the other half votes Green. While you would think election results in this town are 50/50, studies show that the likelihood of a voter showing up to the ballot box decreases as the distance they have to travel to vote increases. As a loyal member of the <span style="color: #b4a7d6">Purple</span> party, it is your job to VOTERIG and pick polling locations (hint: they can overlap, and this is actually a common practice called polling place consolidation) that maximize the turnout of Purple voters. Carefully drag and drop locations for polling booths so that the Purple party wins the election!
         </p>
@@ -37,33 +37,33 @@
       
     </aside>
     <main>
+      <div id="level-indicator-box">
+        <span id="level-indicator">
+          Intro Level (0/5): Get 50% votes to win.
+        </span>
+      </div>
       <div id="canvas-wrapper">
-        
         <canvas id="game-canvas" width="600" height="600">
-    
         </canvas>
-        
+        <div id="background">
+        </div>
         <div id="canvas-overlay">
           <template id="ballot-template">
             <div class="ballot" draggable="true">
               <img src="ballot.png" class="ballot-img">  
             </div>
           </template>
+          <div id="loading-indicator">
+            <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          </div>
         </div>
-      </div>
-      <div>
-        <span id="level-indicator">
-          Intro Level (0/5): Get 50% votes to win.
-        </span>
       </div>
     </main>
     <aside>
       <div class ="facts">
-        <h1>
-          <font color=#e4ca99>
-         Fun Facts! 
-          </font>
-        </h1>
+        <h3 class="yellowish-title">
+         Fun Facts!
+        </h3>
         <p>
         <span id = "new-fact">
           Gerrymandering is the practice of drawing the boundaries of electoral districts in a way that gives one political party an unfair advantage over its rivals (political or partisan gerrymandering) or that dilutes the voting power of members of ethnic or linguistic minority groups (racial gerrymandering). 
@@ -71,20 +71,23 @@
         </p>
         <p> </p>
       </div>
-      <button id="submit-btn">
+      
+      <button id="submit-btn" class="submit-btn">
         Hold the Elections!
       </button>
     </aside>
   </div>
-  <div id="popup">
-    <div id="light" class="white_content"> 
-      <div id="win-text">
+  
+  <div id="fade" class="black_overlay">
+      <div id="light"> 
+        <div id="win-text" style="text-align: center">
+        </div>
+        <div id="stars">
+          
+        </div>
+        <button id="next-level-button">Next Level</a>
       </div>
-      <a href="javascript:void(0)" onclick="closePopup()" style="font-size: 300%;">Next Level</a>
-        
-    </div>
   </div>
-  <div id="fade" class="black_overlay"></div>
   </div>
   <img id="drag-thumbnail" src="drag-thumbnail.png" width="184" height="184"/>
     

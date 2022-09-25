@@ -29,13 +29,13 @@ function playLevel1() {
     console.log("iojafiwoejf");
     let percentage = votes['purple'] / (votes['green'] + votes['purple'] + votes['orange']);
     if (percentage > 0.85) {
-      return [true, "⭐⭐⭐", percentage, "Master Manipulator"];
+      return [true, "⭐⭐⭐", percentage, "Master Manipulator!"];
     }
     else if (percentage > 0.7) {
-      return [true, "⭐⭐", percentage, "Morally Compromised!"];
+      return [true, "⭐⭐", percentage, "Morally Compromised"];
     }
     else if (percentage >= 0.50) {
-      return [true, "⭐", percentage, "Cheat Harder!"];
+      return [true, "⭐", percentage, "Slim Victory!"];
     }
     else {
       return [false, `Your party only got ${Math.floor(percentage * 100)}%! Try again.`];

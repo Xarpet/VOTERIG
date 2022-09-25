@@ -1,5 +1,7 @@
 function playLevel0() {
   document.getElementById("level-indicator").innerText = "Intro Level (0/5): Get 50% votes to win.";
+   document.getElementById("level-indicator").style.color='#f0e7e3';
+  document.getElementById("level-indicator").style.fontSize='27px';
   startLevel([
     genRandomPoints({
       densityFunc: cluster(0.5, 0.5, 4.0, 3.0),
@@ -16,10 +18,10 @@ function playLevel0() {
   ], ({votes, stationXs, stationYs}) => {
     let percentage = votes['purple'] / (votes['green'] + votes['purple']);
     if (percentage > 0.85) {
-      return [true, "⭐⭐⭐", percentage, "Master Manipulator"];
+      return [true, "⭐⭐⭐", percentage, "Master Manipulator!"];
     }
     else if (percentage > 0.7) {
-      return [true, "⭐⭐", percentage, "Morally Compromised"];
+      return [true, "⭐⭐", percentage, "Cheat Harder! You can make 85%!"];
     }
     else if (percentage >= 0.50) {
       return [true, "⭐", percentage, "Cheat Harder!"];

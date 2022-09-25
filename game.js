@@ -2,6 +2,7 @@ let canvas;
 let submitBtn;
 let canvasOverlay;
 let ballotTemplate;
+let loadingIndicator;
 const SIZE = 600;
 const BALLOT_RADIUS = 90;
 const GRIDSIZE = 1E-3;
@@ -10,14 +11,17 @@ const PARTIES = {
   yellow: "#fdcb6e",
   purple: "#a29bfe",
   green: "#00b894",
-  grey1: "#a29bfe",
-  grey2: "#696969",
+  grey1: "#8eb1c2",
+  grey2: "#8eb1c2",
   orange: "#e17055"
 };
+let wintext1 = "Good job! Purple won with "
+let wintext2 = "% of the vote! \n"
 
 let currentLevel = 0;
 
 function startLevel(distributions, check) {
+  
     const { xs, ys, parties } = combineDistributions(distributions);
   
     const numPoints = parties.length;
@@ -73,17 +77,20 @@ function startLevel(distributions, check) {
             destroyBallot(bid, ballotElems);
           }
   
-          let popup = document.getElementById('light')
-          popup.style.display = 'block';
+          // popup.style.display = 'block';
   
-          stars = document.createElement("span");
+          stars = document.getElementById("stars");
           stars.className = "stars"
-          stars.innerText = text + "\n" + name + "\n"
-          popup.insertBefore(stars, popup.children[1])
-  
+          stars.innerText = text + "\n" + name + "\n";
+          
           textbox = document.getElementById("win-text")
-          textbox.innerText = "Good job! Purple won with " + Math.round(percentage * 100) + "% of the vote. \n"
-          document.getElementById('fade').style.display = 'block';
+          textbox.innerText = wintext1 + Math.round(percentage * 100) + wintext2
+          
+          wintext1 = "Good job! Purple won with "
+          wintext2 = "% of the vote! \n"
+          
+          document.getElementById('win-text').style.fontSize="40px"
+          document.getElementById('fade').style.display = 'flex';
         }, 500);
       }
       else {
@@ -110,26 +117,36 @@ function startLevel(distributions, check) {
 
 
 function closePopup() {
-  let popup = document.getElementById('light')
-  popup.style.display = 'none';
   document.getElementById('fade').style.display = 'none';
-
-  popup.removeChild(popup.children[1])
 
   if (currentLevel != 5) {
     currentLevel += 1;
     playLevel(currentLevel);
   }
-}
-
-function playLevel(levelNumber) {
-  switch (levelNumber) {
-    case 0: return playLevel0();
-    case 1: return playLevel1();
-    case 2: return playLevel2();
-    case 3: return playLevel3();
-    case 4: return playLevel4();
+  else {
+    playEnd()
   }
+}
+function playLevel(levelNumber) {
+  function playLevelInner(levelNumber) {
+    switch (levelNumber) {
+      case 0: return playLevel0();
+      case 1: return playLevel1();
+      case 2: return playLevel2();
+      case 3: return playLevel3();
+      case 4: return playLevel4();
+      case 5: return playLevel5();
+    }
+  }
+  loadingIndicator.style.display = "flex";
+  setTimeout(() => {
+    playLevelInner(levelNumber);
+    setTimeout(() => {
+      loadingIndicator.style.display = "none";  
+    }, 100);
+  }, 100);
+  
+  
 }
 
 
@@ -203,12 +220,12 @@ function genRandomPoints({ densityFunc, partyFunc }) {
   return { xs, ys, parties };
 }
 
-function cluster(cx, cy, radius, multiplier) {
+function cluster(cx, cy, radius, multiplier, ex = 12) {
   return (ix, iy) => {
     const x = (ix - cx) / radius;
     const y = (iy - cy) / radius;
     distance = Math.sqrt(x * x + y * y);
-    return (Math.random() < (1E4 / Math.pow(1 + distance, 12)) * multiplier * GRIDSIZE * GRIDSIZE / (radius * radius));
+    return (Math.random() < (1E4 / Math.pow(1 + distance, ex)) * multiplier * GRIDSIZE * GRIDSIZE / (radius * radius));
   }
 }
 
@@ -238,8 +255,8 @@ function shuffleArray(array) {
 
 function createBallot(ballotId, ballotElems) {
   const elem = ballotTemplate.content.cloneNode(true).querySelector(".ballot");
-  elem.style.top = `${180 * (ballotId - 1)}px`;
-  elem.style.right = "0px";
+  elem.style.top = `${190 * (ballotId - 1)}px`;
+  elem.style.right = "10px";
   elem.ondragstart = (ev) => {
     dragStart(ballotId, ev);
   };
@@ -263,7 +280,6 @@ function dragStart(ballotId, event) {
     ballotId
   });
   event.dataTransfer.setData("text/plain", toTransfer);
-  console.log(event);
   event.dataTransfer.setDragImage(document.getElementById("drag-thumbnail"), event.layerX, event.layerY);
 }
 
@@ -326,5 +342,7 @@ window.addEventListener("load", () => {
   ballotTemplate = document.getElementById("ballot-template");
   canvasOverlay = document.getElementById("canvas-overlay");
   canvasOverlay.ondragover = (ev) => ev.preventDefault();
-  playLevel0();
+  loadingIndicator = document.getElementById("loading-indicator");
+  document.getElementById("next-level-button").onclick = closePopup;
+  playLevel(0);
 });
